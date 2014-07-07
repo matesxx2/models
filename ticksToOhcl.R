@@ -9,7 +9,8 @@ ticksToOhcl<-function(tickData,timeFrameSize=60, timeFormat='%Y%m%d %H:%M:%OS'){
   #
   # now hardcoded 30s size of frame
   # tickData$Date$sec = floor(tickData$Date$sec/30)*30
-  tickData$Date$sec = floor(tickData$Date$sec/60)
+  tickData$Date$sec = rep(0,nrow(tickData))
+  tickData$Date$min = floor(tickData$Date$min/2)*2
   
   # open
   tmp = aggregate(x=tickData$Buy,by=list(as.character(tickData$Date)),FUN="head",n=1)
